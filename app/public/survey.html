@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Friend Finder</title>
+        <!-- Latest compiled and minified CSS & JS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+    <div class= "container">
+        <h1>Survey Questions</h1>
+        <hr>
+        <h2>About You</h2>
+        <h3>Name (required)</h3>
+        <input type="text" id="name" class="form-control" required>
+        <h3>Link to photo (required)</h3>
+        <input type="text" id="photo" class="form-control" required>
+        <hr>
+
+        <!--Survey-->
+        <h2>Question 1</h2>
+        <p>You like cats.</p>
+        <select class="chosen-select" id="q1">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 2</h2>
+        <p>You like dogs.</p>
+        <select class="chosen-select" id="q2">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 3</h2>
+        <p>You love coding.</p>
+        <select class="chosen-select" id="q3">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 4</h2>
+        <p>Express is the best!</p>
+        <select class="chosen-select" id="q4">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 5</h2>
+        <p>Pizza is your favorite food.</p>
+        <select class="chosen-select" id="q5">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 6</h2>
+        <p>Chocolate is your favorite ice cream flavor.</p>
+        <select class="chosen-select" id="q6">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 7</h2>
+        <p>Summer is better than winter.</p>
+        <select class="chosen-select" id="q7">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 8</h2>
+        <p>You are a morning person.</p>
+        <select class="chosen-select" id="q8">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 9</h2>
+        <p>The chicken came before the egg.</p>
+        <select class="chosen-select" id="q9">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h2>Question 10</h2>
+        <p>You love surveys.</p>
+        <select class="chosen-select" id="q10">
+                <option value=""></option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+        </select>
+       
+        <div class="btn">
+        <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
+        </div>  
+    </div>
+
+    <footer class="footer">
+            <a href="/api/friends">API Friends List</a>
+             | 
+            <a href="https://tiaracuevas.github.io/friendfinder/">GitHub Repo</a>
+    </footer>
+
+
+
+
+
+<script type="text/javascript">
+//on click event
+$("#submit").on("click", function(event){
+    event.preventDefault();
+
+
+var newFriend = {
+    name: $("#name").val().trim(),
+    photo: $("#photo").val().trim(),
+    scores: [
+        $("#q1").val(),
+        $("#q2").val(),
+        $("#q3").val(),
+        $("#q4").val(),
+        $("#q5").val(),
+        $("#q6").val(),
+        $("#q7").val(),
+        $("#q8").val(),
+        $("#q9").val(),
+        $("#q10").val()
+    ]
+};
+
+$.post("/api/friends", newFriend, function(result){
+    console.log("New Friend Added!")
+    console.log(result)
+   
+})
+})
+//Here I would need to determine the user's most compatible friend by comparing scores
+// Then send the results using a modal
+// <!--Results Modal-->
+//     <div id="results-modal" class="modal" role="dialog">
+//         <div class="modal-dialog">
+//             <div class= "modal-content">
+//                 <div class="modal-header">
+//                     <button type="dismiss" class="close" data-dismiss="modal">x</button>
+//                 </div>
+//                 <h1 id="best-match">Best Match</h1>
+//                 <h2 id="match name"></h2>
+//                 <img id="match-image">
+//             </div>
+//         </div>
+//     </div>
+
+
+</script>
+</body>
+</html>
